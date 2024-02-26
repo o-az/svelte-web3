@@ -32,16 +32,14 @@
     <button
       class={clsx([
         'h-12 rounded-md bg-fuchsia-400 p-2 font-mono text-2xl font-bold tracking-wide text-white transition-colors duration-300 ease-in-out',
-        ' hover:bg-fuchsia-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-opacity-50'
+        'hover:bg-fuchsia-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-opacity-50'
       ])}
       on:click={() => {
         if ($wallet.isConnected) {
           navigator.clipboard.writeText(walletAddress)
           copyNotification = true
-          setTimeout(() => (copyNotification = false), 1000)
-        } else {
-          connectWallet('injected')
-        }
+          setTimeout(() => (copyNotification = false), 1_000)
+        } else connectWallet('injected')
       }}
       disabled={connectError}
     >

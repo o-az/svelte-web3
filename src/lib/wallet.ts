@@ -1,4 +1,3 @@
-import '$/patch.ts'
 import {
   http,
   fallback,
@@ -29,7 +28,7 @@ export const config = createConfig({
   connectors: [injected({ shimDisconnect: true, unstable_shimAsyncInject: 2500 })],
   transports: {
     [mainnet.id]: fallback([http(), unstable_connector(injected)]),
-    [sepolia.id]: fallback([unstable_connector(injected), http()])
+    [sepolia.id]: fallback([http(), unstable_connector(injected)])
   }
 })
 

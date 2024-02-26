@@ -6,7 +6,7 @@
   import { createQuery } from '@tanstack/svelte-query'
 
   let error: any
-  let pollingInterval = 10_000
+  let pollingInterval = 15_000
 
   $: blocksQuery = createQuery({
     queryKey: ['blocks'],
@@ -65,14 +65,14 @@
       <h1 class="mb-3 text-4xl font-bold sm:mb-8">Blocks</h1>
       <ul class="flex flex-col items-center justify-center space-y-2">
         <li class="flex w-full flex-row items-baseline justify-between space-x-4">
-          <p class="w-auto text-left text-2xl font-extrabold tabular-nums md:w-36">block #</p>
-          <p class="hidden w-full text-left text-2xl font-extrabold tabular-nums md:block">hash</p>
-          <p class="text-right text-2xl font-extrabold tabular-nums">count</p>
-          <p class="text-2xl font-extrabold tabular-nums">timestamp</p>
+          <p class="w-auto text-left text-2xl font-extrabold md:w-36">block</p>
+          <p class="hidden w-full text-left text-2xl font-extrabold md:block">hash</p>
+          <p class="text-right text-2xl font-extrabold">txs</p>
+          <p class="text-2xl font-extrabold">timestamp</p>
         </li>
         {#each $blockStore as block}
           <li class="flex w-full flex-row items-baseline justify-between space-x-4">
-            <p class="text-left text-xl font-semibold tabular-nums">#{block.number}</p>
+            <p class="text-left text-xl font-semibold tabular-nums">{block.number}</p>
             <p class="hidden w-full text-left text-xl font-semibold tabular-nums md:block">
               {block.hash}
             </p>
@@ -84,3 +84,16 @@
     </section>
   {/if}
 </main>
+<footer
+  class="sticky bottom-0 mx-auto flex h-min items-center justify-center rounded-md align-middle font-mono font-semibold"
+>
+  <p class="bg-white px-2 hidden sm:block">what would you like to see next?</p>
+  <a
+    target="_blank"
+    rel="noopener noreferrer"
+    href="https://github.com/o-az/svelte-web3"
+    class="bg-cyan-500 px-2 font-mono font-semibold text-white hover:underline"
+  >
+    github.com/o-az/svelte-web3
+  </a>
+</footer>
