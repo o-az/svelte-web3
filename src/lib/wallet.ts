@@ -28,15 +28,7 @@ export const config = createConfig({
   connectors: [injected({ shimDisconnect: true, unstable_shimAsyncInject: 2500 })],
   transports: {
     [mainnet.id]: fallback([http(), unstable_connector(injected)]),
-    [sepolia.id]: fallback([
-      http('https://rpc.sepolia.org'),
-      http('https://rpc2.sepolia.org'),
-      http('https://rpc.sepolia.online'),
-      http('https://www.sepoliarpc.space'),
-      http('https://rpc-sepolia.rockx.com'),
-      http('https://rpc.bordel.wtf/sepolia'),
-      unstable_connector(injected)
-    ])
+    [sepolia.id]: fallback([http(), unstable_connector(injected)])
   }
 })
 

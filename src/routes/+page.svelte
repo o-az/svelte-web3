@@ -6,26 +6,24 @@
   import { createQuery } from '@tanstack/svelte-query'
 
   let error: any
-  let pollingInterval = 2500
+  let pollingInterval = 8000
 
   $: blocksQuery = createQuery({
     queryKey: ['blocks'],
-    queryFn: async () => {
-      const { number: latestBlockNumber, hash, transactions, timestamp } = await getBlock(config)
-      const lastStoredBlock = $blockStore.at(-1)
-      if (lastStoredBlock?.number === latestBlockNumber) return blockStore
-
-      blockStore.update(blocks => [
-        ...blocks,
-        { number: latestBlockNumber, hash, transactionsCount: transactions.length, timestamp }
-      ])
-      return blockStore
-    },
+    queryFn: async () => await getBlock(config),
     enabled: $wallet.isConnected,
     refetchInterval: pollingInterval
   })
 
   $: if ($blocksQuery.status === 'error') error = $blocksQuery.error
+
+  $: if ($blocksQuery.status === 'success') {
+    const { number, hash, timestamp, transactions } = $blocksQuery.data
+    blockStore.update(blocks => [
+      ...blocks,
+      { number, hash, timestamp, transactionsCount: transactions.length }
+    ])
+  }
 </script>
 
 <main
