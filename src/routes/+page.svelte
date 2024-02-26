@@ -29,7 +29,9 @@
 <main
   class="mx-auto mt-12 flex h-full w-full flex-col items-center justify-start space-y-6 sm:space-y-14"
 >
-  <div class="flex flex-col items-center justify-center space-x-3 space-y-2 sm:space-y-0 text-3xl sm:flex-row">
+  <div
+    class="flex flex-col items-center justify-center space-x-3 space-y-2 text-3xl sm:flex-row sm:space-y-0"
+  >
     <a
       target="_blank"
       rel="noopener noreferrer"
