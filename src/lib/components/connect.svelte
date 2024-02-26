@@ -38,7 +38,7 @@
         if ($wallet.isConnected) {
           navigator.clipboard.writeText(walletAddress)
           copyNotification = true
-          setTimeout(() => (copyNotification = false), 1_000)
+          setTimeout(() => (copyNotification = false), 1000)
         } else connectWallet('injected')
       }}
       disabled={connectError}

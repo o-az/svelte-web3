@@ -6,17 +6,19 @@
   import { createQuery } from '@tanstack/svelte-query'
 
   let error: any
-  let pollingInterval = 15_000
+  let pollingInterval = 2500
 
   $: blocksQuery = createQuery({
     queryKey: ['blocks'],
     queryFn: async () => {
-      const { number, hash, transactions, timestamp } = await getBlock(config)
+      const { number: latestBlockNumber, hash, transactions, timestamp } = await getBlock(config)
+      const lastStoredBlock = $blockStore.at(-1)
+      if (lastStoredBlock?.number === latestBlockNumber) return blockStore
+
       blockStore.update(blocks => [
         ...blocks,
-        { number, hash, transactionsCount: transactions.length, timestamp }
+        { number: latestBlockNumber, hash, transactionsCount: transactions.length, timestamp }
       ])
-
       return blockStore
     },
     enabled: $wallet.isConnected,
@@ -87,7 +89,7 @@
 <footer
   class="sticky bottom-0 mx-auto flex h-min items-center justify-center rounded-md align-middle font-mono font-semibold"
 >
-  <p class="bg-white px-2 hidden sm:block">what would you like to see next?</p>
+  <p class="hidden bg-white px-2 sm:block">what would you like to see next?</p>
   <a
     target="_blank"
     rel="noopener noreferrer"
