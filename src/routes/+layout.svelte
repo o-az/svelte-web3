@@ -1,6 +1,6 @@
 <script lang="ts">
-  import '$/patch.ts'
-  import '$/style.css'
+  import '$/app.css'
+  import '$/polyfill.ts'
   import { browser } from '$app/environment'
   import { SvelteQueryDevtools } from '@tanstack/svelte-query-devtools'
   import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query'

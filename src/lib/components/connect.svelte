@@ -4,13 +4,18 @@
   import { sepolia } from 'viem/chains'
   import { fade, slide } from 'svelte/transition'
   import { truncateAddress } from '$/lib/utilities.ts'
-  import { connect, disconnect, wallet, type ConnectorType } from '$lib/wallet.ts'
+  import {
+    connect,
+    disconnect,
+    account,
+    type ConnectorType
+  } from '$lib/wallet.ts'
 
   let connectError: any
   let walletAddress: Address
 
-  $: if ($wallet.isConnected && $wallet.address) {
-    walletAddress = $wallet.address
+  $: if ($account.isConnected && $account.address) {
+    walletAddress = $account.address
     connectError = undefined
   }
 
@@ -35,7 +40,7 @@
         'hover:bg-fuchsia-400 hover:text-black focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-opacity-50'
       ])}
       on:click={() => {
-        if ($wallet.isConnected) {
+        if ($account.isConnected) {
           navigator.clipboard.writeText(walletAddress)
           copyNotification = true
           setTimeout(() => (copyNotification = false), 1000)
@@ -43,10 +48,10 @@
       }}
       disabled={connectError}
     >
-      {$wallet.isConnected ? truncateAddress(walletAddress) : 'CONNECT'}
+      {$account.isConnected ? truncateAddress(walletAddress) : 'CONNECT'}
     </button>
     <button
-      hidden={!$wallet.isConnected}
+      hidden={!$account.isConnected}
       class="text-5xl hover:scale-110 hover:transform focus:outline-none focus:ring-2 focus:ring-fuchsia-500 focus:ring-opacity-50"
       aria-details="exit door"
       on:click={() => disconnect()}

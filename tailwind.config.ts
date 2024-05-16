@@ -1,7 +1,7 @@
-import type { Config } from 'tailwindcss'
+/**
+ * @note
+ * This file is not necessary given that we're using Tailwind v4
+ * It's only here so that the VSCode Tailwind CSS IntelliSense extension can work.
+ */
 
-export default <Config>{
-  darkMode: ['class'],
-  content: ['./src/**/*.{html,js,svelte,ts}'],
-  safelist: ['dark']
-}
+export default {}

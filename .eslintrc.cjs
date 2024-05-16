@@ -37,15 +37,26 @@ module.exports = {
     'unicorn/prefer-node-protocol': ['off'],
     'unicorn/numeric-separators-style': ['warn'],
     'unicorn/no-object-as-default-parameter': ['off'],
-    'unicorn/no-keyword-prefix': ['error', { disallowedPrefixes: ['new', 'for'] }],
-    'unicorn/consistent-function-scoping': ['off', { checkArrowFunctions: false }],
+    'unicorn/no-keyword-prefix': [
+      'error',
+      { disallowedPrefixes: ['new', 'for'] }
+    ],
+    'unicorn/consistent-function-scoping': [
+      'off',
+      { checkArrowFunctions: false }
+    ],
     'unicorn/prefer-top-level-await': ['off'],
     'unicorn/prefer-event-target': ['off'],
     'unicorn/prevent-abbreviations': [
       'error',
       {
         checkFilenames: false,
-        allowList: { ProcessEnv: true, ImportMetaEnv: true, Props: true, Env: true }
+        allowList: {
+          ProcessEnv: true,
+          ImportMetaEnv: true,
+          Props: true,
+          Env: true
+        }
       }
     ],
     'import/no-anonymous-default-export': ['off'],
