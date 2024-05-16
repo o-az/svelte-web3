@@ -1,8 +1,12 @@
-// See https://kit.svelte.dev/docs/types#app
 declare global {
-  namespace App {}
-  interface Platform {
-    env: {}
+  namespace App {
+    interface Platform {
+      env: {}
+      context: {
+        waitUntil(promise: Promise<any>): void
+      }
+      caches: CacheStorage & { default: Cache }
+    }
   }
   interface Window {
     EventEmitter: typeof EventEmitter
