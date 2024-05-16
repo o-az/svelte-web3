@@ -14,12 +14,14 @@
     "typecheck": "tsc --project tsconfig.json --noEmit"
   },
   "dependencies": {
+    "@tailwindcss/vite": "4.0.0-alpha.15",
+    "@tanstack/query-sync-storage-persister": "^5.36.1",
     "@tanstack/svelte-query": "^5.36.1",
+    "@tanstack/svelte-query-persist-client": "^5.36.1",
     "@wagmi/connectors": "^4.3.10",
     "@wagmi/core": "^2.9.8",
-    "viem": "^2.10.8",
     "tailwindcss": "4.0.0-alpha.15",
-    "@tailwindcss/vite": "4.0.0-alpha.15"
+    "viem": "^2.10.8"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240512.0",
